@@ -22,14 +22,16 @@ function Signup() {
   return (
     <>
         <h3>Sign up!</h3>
-    <form onSubmit={handleSubmit} method="post">
+    <form method="post">
         Name: <input type="text" name="name" value={name} onChange={event=>setName(event.target.value)} required/><br/><br/>
         Email: <input type="email" name="email" value={email} onChange={event=>setEmail(event.target.value)} required/><br/><br/>
         UserName: <input type="text" name="username" value={username} onChange={event=>setUsername(event.target.value)} required/><br/><br/>
         Password: <input type="password" name="password" value={password} onChange={event=>setPassword(event.target.value)} required/><br/><br/>
         Phone Number: <input type="text" name="phoneno" value={phoneno} onChange={event=>setPhoneno(event.target.value)} required/><br/><br/>
-        <input type="submit" value="SignUp" required/><br/><br/>
+        <button onClick={handleSubmit} className="btn btn-primary">Sign Up</button><br/><br/>
     </form>
+
+    <p>Having an Account?<a href='/'>Login</a></p>
     </>
   )
 }
