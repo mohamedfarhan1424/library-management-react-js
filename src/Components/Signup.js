@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import { useDispatch} from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 function Signup() {
     const [name,setName]=useState('');
@@ -6,6 +8,31 @@ function Signup() {
     const [username,setUsername]=useState('');
     const [password,setPassword]=useState('');
     const [phoneno,setPhoneno]=useState('');
+    const [check, setCheck] = useState(false);
+    const dispatch=useDispatch();
+    const navigate=useNavigate();
+
+
+    const handleSignup = (response) => {
+        if (!response.usercreated) {
+          setCheck(true);
+        } else {
+          setCheck(false);
+          dispatch({
+            type: "LOG_IN" ,
+            payload: {
+              name: name,
+              email: email,
+              username: username,
+              isAuthenticated: response.usercreated,
+              phoneno: phoneno,
+            },
+          });
+          navigate("/dashboard");
+        }
+      };
+
+
     const handleSubmit=event=>{
         event.preventDefault();
         const url = 'http://localhost:8080/signup'
@@ -16,12 +43,14 @@ function Signup() {
     };
     console.log("HEllo");
     fetch(url, requestOptions)
-        .then(response =>response=response.json()).then(response=>console.log(response.usercreated))
+        .then(response =>response=response.json()).then((response)=>handleSignup(response))
         .catch(error => console.log('Form submit error', error))
     }
   return (
     <>
-        <h3>Sign up!</h3>
+    <div className="centerdiv">
+      <div>
+        <h3>Sign up!</h3><br/>
     <form method="post">
         Name: <input type="text" name="name" value={name} onChange={event=>setName(event.target.value)} required/><br/><br/>
         Email: <input type="email" name="email" value={email} onChange={event=>setEmail(event.target.value)} required/><br/><br/>
@@ -31,7 +60,15 @@ function Signup() {
         <button onClick={handleSubmit} className="btn btn-primary">Sign Up</button><br/><br/>
     </form>
 
+    {check && (
+        <p style={{ color: "red" }}>
+          There is already a user with this username.
+        </p>
+      )}
+
     <p>Having an Account?<a href='/'>Login</a></p>
+    </div>
+    </div>
     </>
   )
 }

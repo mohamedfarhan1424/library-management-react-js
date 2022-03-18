@@ -4,6 +4,7 @@ const initState = {
     username:"",
     isAuthenticated: false,
     phoneno:"",
+    books:{},
   };
   export function reducer(state = initState, action) {
     switch (action.type) {
@@ -16,6 +17,11 @@ const initState = {
           isAuthenticated: action.payload.isAuthenticated,
           phoneno:action.payload.phoneno,
         };
+        case "BOOKS":
+          return {
+            ...state,
+            books:action.payload.books,
+          };
       case "LOGOUT":
         return {
           ...initState,

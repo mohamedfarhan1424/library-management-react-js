@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import '../App.css';
 
 function Home() {
   const [username, setUsername] = useState("");
@@ -44,6 +45,8 @@ function Home() {
   };
   return (
     <>
+    <div className="centerdiv">
+      <div>
       <form method="post">
         Username:{" "}
         <input
@@ -80,6 +83,8 @@ function Home() {
       <p>
         Don't have an account?<a href="/signup">create account</a>
       </p>
+      </div>
+      </div>
     </>
   );
 }
