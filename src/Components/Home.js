@@ -46,7 +46,7 @@ function Home() {
   return (
     <>
     <div className="centerdiv">
-      <div>
+      <div className="carder">
       <form method="post">
         Username:{" "}
         <input

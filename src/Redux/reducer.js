@@ -5,6 +5,7 @@ const initState = {
     isAuthenticated: false,
     phoneno:"",
     books:{},
+    nums:0,
   };
   export function reducer(state = initState, action) {
     switch (action.type) {
@@ -22,6 +23,11 @@ const initState = {
             ...state,
             books:action.payload.books,
           };
+          case "ROWS":
+            return {
+              ...state,
+              nums:action.payload.nums,
+            };
       case "LOGOUT":
         return {
           ...initState,

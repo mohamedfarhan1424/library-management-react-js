@@ -1,3 +1,4 @@
+import { Alert } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import {  useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -9,6 +10,7 @@ function Dashboard() {
   const navigate = useNavigate();
   const [books,setBooks]=useState([]);
   const [rows,setRows]=useState([]);
+  const [update,setUpdate]=useState("");
 
   
 
@@ -60,10 +62,11 @@ function Dashboard() {
         .then(response =>response=response.json()).then((response)=>handleUserBooks(response))
         .catch(error => console.log('Fetch error', error))
 
+    dispatch({type:"ROWS",payload:{nums:rows.length}});
     
 
     
-  },[state.username,rows]);
+  },[state.username,rows,dispatch]);
 
   
 
@@ -78,6 +81,7 @@ function Dashboard() {
     const date2=new Date();
     date2.setDate(date2.getDate()+returndays);
     const returnDate=date2.toDateString();
+    setUpdate("get");
     const requestOptions = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -102,10 +106,18 @@ function Dashboard() {
     .then(response=>response.json()).then((response)=>console.log(response))
     .catch(error=>console.log('Fetch error',error))
 
+    setUpdate("Return");
+
     
     
   }
   
+
+  useEffect(()=>{
+    setTimeout(() => {
+      setUpdate("");
+    }, 5000);
+  },[update]);
 
 
   if (!state.isAuthenticated) {
@@ -119,8 +131,11 @@ function Dashboard() {
   }
   return (
     <>
+    <div>
+    
     
     <div className="dashboard">
+    
       <h2>Welcome {state.name}</h2><br/>
       <div>
          <h6>Books Brought by you</h6>
@@ -130,8 +145,19 @@ function Dashboard() {
         <h6>Books in Library</h6>
         <Customizedtables head1="Book Name" head2="Author Name" head3="Get" head4={false} rows={books} getfunction={handleGetBook} />
       </div>
+      
      </div>
-       
+     {update==="get" && (
+         <div className="alert">
+         <Alert severity="success">Book got successfully!</Alert>
+         </div>
+       )}
+       {update==="Return"&&(
+         <div className="alert">
+         <Alert severity="success">Book is returned successfully!</Alert>
+         </div>
+       )}
+       </div>
     </>
   );
 }

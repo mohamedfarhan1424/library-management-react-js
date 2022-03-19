@@ -1,8 +1,10 @@
+import { Button } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import Dashboard from "./Components/Dashboard";
 import Home from "./Components/Home";
+import Profile from "./Components/Profile";
 import Signup from "./Components/Signup";
 
 function App() {
@@ -14,12 +16,14 @@ function App() {
     <div className="head">
     <h3>LIBRARY MANAGEMENT</h3>
     {state.isAuthenticated && (
-      <button
-      className="btn btn-primary"
+      <div className="logout">
+      <Button variant="contained"><a style={{color:"white",textDecoration:"none"}} href="/profile">Profile</a></Button>
+      <Button variant="contained"
       onClick={() => dispatch({ type: "LOGOUT" })}
     >
       Log Out
-    </button>
+    </Button>
+    </div>
     )}
 
     </div>
@@ -30,6 +34,8 @@ function App() {
           <Route exact path="/signup" element={<Signup/>}/>
 
           <Route exact path="/dashboard" element={<Dashboard/>}/>
+
+          <Route exact path="/profile" element={<Profile/>}/>
           
         </Routes>
       </BrowserRouter>

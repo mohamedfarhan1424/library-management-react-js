@@ -49,7 +49,7 @@ function Signup() {
   return (
     <>
     <div className="centerdiv">
-      <div>
+      <div className="carder">
         <h3>Sign up!</h3><br/>
     <form method="post">
         Name: <input type="text" name="name" value={name} onChange={event=>setName(event.target.value)} required/><br/><br/>
