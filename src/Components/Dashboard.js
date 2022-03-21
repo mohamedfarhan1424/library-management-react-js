@@ -79,7 +79,7 @@ function Dashboard() {
     const date=new Date();
     const buyDate=date.toDateString();
     const date2=new Date();
-    date2.setDate(date2.getDate()+returndays);
+    date2.setDate(date2.getDate()+parseInt(returndays));
     const returnDate=date2.toDateString();
     setUpdate("get");
     const requestOptions = {
