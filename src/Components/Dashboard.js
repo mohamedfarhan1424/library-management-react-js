@@ -120,6 +120,16 @@ function Dashboard() {
   },[update]);
 
 
+
+  if(state.isAdmin){
+    navigate('/admin');
+    return (
+      <>
+      Your are a admin
+      <a href='/admin'>admin</a>
+      </>
+    )
+  }
   if (!state.isAuthenticated) {
     navigate("/");
     return (

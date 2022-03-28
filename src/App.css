@@ -1,15 +1,36 @@
 .head{
   text-align: left;
-  background-color: aqua;
+  background:linear-gradient(to right, #25aae1, #40e495);
   display: grid;
-  grid-template-columns: 80% 20%;
+  grid-template-columns: 70% 30%;
   padding: 1%;
-  border-bottom: 1px solid rgb(0, 65, 65);
   margin-bottom: 2%;
   position: sticky;
-  
+  border-bottom: 1px solid #87CEFA;
+  color:white
 }
-
+.buttons{
+  width: 7vw;
+  background-color: #E0FFFF;
+  color: black;
+  border: none;
+  border-radius: 12px;
+  box-shadow:  4px 4px 10px 2px gainsboro;
+}
+.buttons:hover{
+  box-shadow:  4px 4px 10px 2px pink;
+}
+.loopbutton{
+  width: 7vw;
+  background-color: cyan;
+  color: black;
+  border: none;
+  border-radius: 12px;
+  box-shadow:  4px 4px 10px 2px gainsboro;
+}
+.loopbutton:hover{
+  box-shadow:  4px 4px 10px 2px pink;
+}
 .logout{
   display: flex;
   justify-content: space-around;
@@ -20,7 +41,11 @@
   justify-content: center;
   width: 100%;
 }
-
+.element{
+  display: flex;
+  justify-content: space-between;
+  
+}
 .dashboard{
   padding: 1%;
   text-align: center;
@@ -44,4 +69,29 @@
   border-radius: 12px;
   padding: 2%;
   margin-top: 3%;
+}
+.admin{
+  display: flex;
+  justify-content: space-around;
+  padding: 1%;
+}
+
+.usertable{
+  border-collapse: collapse;
+  width: 100%;
+  padding: 1%;
+}
+.userrow{
+  border: 3px solid black;
+  text-align: left;
+  padding: 1%;
+}
+.userhead{
+  border: 3px solid black;
+  padding: 1%;
+  background-color: #87CEFA;
+}
+.userbody{
+  border: 3px solid black;
+  padding: 1%;
 }

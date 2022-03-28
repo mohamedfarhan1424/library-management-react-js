@@ -3,6 +3,7 @@ const initState = {
     email: "",
     username:"",
     isAuthenticated: false,
+    isAdmin:false,
     phoneno:"",
     books:{},
     nums:0,
@@ -17,7 +18,18 @@ const initState = {
           username: action.payload.username,
           isAuthenticated: action.payload.isAuthenticated,
           phoneno:action.payload.phoneno,
+          isAdmin:false,
         };
+        case "ADMIN":
+          return {
+            ...state,
+            name: action.payload.name,
+          email: action.payload.email,
+          username: action.payload.username,
+          isAuthenticated: action.payload.isAuthenticated,
+          phoneno:action.payload.phoneno,
+          isAdmin:true,
+          }
         case "BOOKS":
           return {
             ...state,

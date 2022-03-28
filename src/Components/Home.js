@@ -13,7 +13,18 @@ function Home() {
   const handleLogin = (response) => {
     if (!response.login) {
       setCheck(true);
-    } else {
+    } 
+    else if(response.admin){
+      setCheck(false);
+      dispatch({type:"ADMIN",payload:{name: response.name,
+        email: response.email,
+        username: response.username,
+        isAuthenticated: response.login,
+        phoneno: response.phoneno}})
+
+        navigate('/admin');
+    }
+    else {
       setCheck(false);
       dispatch({
         type: "LOG_IN" ,
